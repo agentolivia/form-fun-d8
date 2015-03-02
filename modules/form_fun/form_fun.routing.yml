@@ -1,0 +1,70 @@
+form_fun.page:
+  path: /form_fun
+  defaults:
+    _title: 'Fun with FormAPI'
+    _content: '\Drupal\form_fun\Controller\DefaultController::form_fun_page'
+  requirements:
+    _permission: 'access content'
+form_fun.cake_page:
+  path: /form_fun/cake
+  defaults:
+    _title: 'Death, or cake?'
+    _content: '\Drupal\form_fun\Controller\DefaultController::form_fun_cake_page'
+  requirements:
+    _permission: 'access content'
+form_fun.existential:
+  path: /form_fun/existential
+  defaults:
+    _title: 'Existential questions'
+    _form: \Drupal\form_fun\Form\FormFunExistential
+  requirements:
+    _permission: 'access content'
+form_fun.tree:
+  path: /form_fun/tree
+  defaults:
+    _title: 'I''m lost!'
+    _form: \Drupal\form_fun\Form\FormFunTree
+  requirements:
+    _permission: 'access content'
+form_fun.more:
+  path: /form_fun/more
+  defaults:
+    _title: 'Gimmie more'
+    _form: \Drupal\form_fun\Form\FormFunMore
+  requirements:
+    _permission: 'access content'
+form_fun.blam_form:
+  path: /form_fun/blam
+  defaults:
+    _title: Blam!
+    _form: \Drupal\form_fun\Form\FormFunBlamForm
+  requirements:
+    _permission: 'access content'
+form_fun.dynamo_form:
+  path: /form_fun/dynamo
+  defaults:
+    _title: Dynamo!
+    _form: \Drupal\form_fun\Form\FormFunDynamoForm
+  requirements:
+    _permission: 'access content'
+form_fun.death_image:
+  path: /form_fun/death_image
+  defaults:
+    _title: 'Ru-roh.'
+    _content: '\Drupal\form_fun\Controller\DefaultController::form_fun_death_image'
+  requirements:
+    _permission: 'access content'
+form_fun.cake_image:
+  path: /form_fun/cake_image
+  defaults:
+    _title: 'More tea, Vicar?'
+    _content: '\Drupal\form_fun\Controller\DefaultController::form_fun_cake_image'
+  requirements:
+    _permission: 'access content'
+form_fun.chicken_image:
+  path: /form_fun/chicken_image
+  defaults:
+    _title: 'Chicken!'
+    _content: '\Drupal\form_fun\Controller\DefaultController::form_fun_chicken_image'
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,168 @@
+<?php
+
+/*
+ * Form Fun module -- a collection of goofy hacks that demonstrate interesting
+ * FormAPI ideas and techniques.
+ */
+
+/**
+ * A super-simple menu hook that tells Drupal about our Fun Module's page.
+ */
+function form_fun_menu() {
+
+  $items['form_fun'] = array(
+    'title' => 'Fun with FormAPI',
+    'page callback' => 'form_fun_page',
+    'access arguments' => array('access content'),
+  );
+
+  $items['form_fun/cake'] = array(
+    'title' => 'Death, or cake?',
+    'page callback' => 'form_fun_cake_page',
+    'access arguments' => array('access content'),
+    'file' => 'form_fun.cake.inc',
+    'weight' => 1,
+  );
+
+  $items['form_fun/existential'] = array(
+    'title' => 'Existential questions',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('form_fun_existential'),
+    'access arguments' => array('access content'),
+    'file' => 'form_fun.existential.inc',
+    'weight' => 2,
+  );
+
+  $items['form_fun/tree'] = array(
+    'title' => "I'm lost!",
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('form_fun_tree'),
+    'access arguments' => array('access content'),
+    'file' => 'form_fun.tree.inc',
+    'weight' => 3,
+  );
+
+  $items['form_fun/more'] = array(
+    'title' => "Gimmie more",
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('form_fun_more'),
+    'access arguments' => array('access content'),
+    'file' => 'form_fun.more.inc',
+    'weight' => 4,
+  );
+
+  $items['form_fun/blam'] = array(
+    'title' => "Blam!",
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('form_fun_blam_form'),
+    'access arguments' => array('access content'),
+    'file' => 'form_fun.blam.inc',
+    'weight' => 5,
+  );
+
+  $items['form_fun/dynamo'] = array(
+    'title' => "Dynamo!",
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('form_fun_dynamo_form'),
+    'access arguments' => array('access content'),
+    'file' => 'form_fun.dynamo.inc',
+    'weight' => 6,
+  );
+
+  /**
+   * These menu callbacks should be ignored! They're secret. Suuuuuuper secret.
+   */
+
+  $items['form_fun/death_image'] = array(
+    'page callback' => 'form_fun_death_image',
+    'access callback' => TRUE,
+    'file' => 'form_fun.cake.inc',
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['form_fun/cake_image'] = array(
+    'page callback' => 'form_fun_cake_image',
+    'access callback' => TRUE,
+    'file' => 'form_fun.cake.inc',
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['form_fun/chicken_image'] = array(
+    'page callback' => 'form_fun_chicken_image',
+    'access callback' => TRUE,
+    'file' => 'form_fun.cake.inc',
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+
+/**
+ * This function just displays an overview of the various forms we're
+ * using in this module.
+ */
+function form_fun_page() {
+  // @FIXME
+// l() expects a Url object, created from a route name or external URI.
+// $links[] = l(t('Death, or cake? (The basics)'), 'form_fun/cake');
+
+  // @FIXME
+// l() expects a Url object, created from a route name or external URI.
+// $links[] = l(t('Existential questions (Peeking at form state!)'), 'form_fun/existential');
+
+  // @FIXME
+// l() expects a Url object, created from a route name or external URI.
+// $links[] = l(t("I'm lost! (Nested form elements)"), 'form_fun/tree');
+
+  // @FIXME
+// l() expects a Url object, created from a route name or external URI.
+// $links[] = l(t('Gimmie more (Multi-step forms)'), 'form_fun/more');
+
+  // @FIXME
+// l() expects a Url object, created from a route name or external URI.
+// $links[] = l(t('Blam! (States examples)'), 'form_fun/blam');
+
+  // @FIXME
+// l() expects a Url object, created from a route name or external URI.
+// $links[] = l(t('Dynamo! (AJAX powered forms)'), 'form_fun/dynamo');
+
+
+  return _theme('item_list', array('items' => $links));
+}
+
+
+/**
+ * ================== hook_form_alter() demonstration ==================
+ */
+
+/**
+ * The hook_form_alter() function is called whenever a form is built. Every
+ * installed Drupal module has a chance to change the form's structure before
+ * Drupal processes and displays it. It's shockingly powerful. In this
+ * example, we're intercepting the user_register form and adding a custom
+ * validation handler to it.
+ */
+function form_fun_form_alter(&$form, \Drupal\Core\Form\FormStateInterface &$form_state, $form_id) {
+  // drupal_set_message($form_id);
+
+  if ($form_id = 'user_profile_form' && isset($form['account']['pass'])) {
+    $form['#validate'][] = 'form_fun_user_register_validate';
+  }
+}
+
+
+/**
+ * ...Our custom validation handler kicks back an error on the user
+ * registration form if we use a really, really dumb password.
+ */
+function form_fun_user_register_validate(&$form, &$form_state) {
+  $really_stupid_passwords = array(
+    'god', 'password', '12345',
+  );
+  $password = \Drupal\Component\Utility\Unicode::strtolower($form_state['values']['pass']);
+
+  if (in_array($password, $really_stupid_passwords)) {
+    form_set_error('pass', t('Seriously? You %pass was a good password?', array('%pass' => $password)));
+  }
+}

@@ -1,0 +1,16 @@
+name: Drupal Module Upgrader
+description: Provides tools for upgrading Drupal 7 modules to Drupal 8.
+# core: 8.x
+type: module
+# These dependencies are used ONLY by the test suite. If you want to run
+# the tests, install the -->DRUPAL 7<-- versions of these modules, alongside
+# DMU itself.
+# dependencies:
+#  - diff
+#  - examples
+#  - pants
+# Information added by Drupal.org packaging script on 2014-11-27
+version: '8.x-1.0+6-dev'
+core: '8.x'
+project: 'drupalmoduleupgrader'
+datestamp: 1417095186

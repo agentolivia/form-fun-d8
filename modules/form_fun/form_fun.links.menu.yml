@@ -1,0 +1,33 @@
+form_fun.page:
+  route_name: form_fun.page
+  title: 'Fun with FormAPI'
+form_fun.cake_page:
+  route_name: form_fun.cake_page
+  title: 'Death, or cake?'
+  weight: 1
+  parent: form_fun.page
+form_fun.existential:
+  route_name: form_fun.existential
+  title: 'Existential questions'
+  weight: 2
+  parent: form_fun.page
+form_fun.tree:
+  route_name: form_fun.tree
+  title: 'I''m lost!'
+  weight: 3
+  parent: form_fun.page
+form_fun.more:
+  route_name: form_fun.more
+  title: 'Gimmie more'
+  weight: 4
+  parent: form_fun.page
+form_fun.blam_form:
+  route_name: form_fun.blam_form
+  title: Blam!
+  weight: 5
+  parent: form_fun.page
+form_fun.dynamo_form:
+  route_name: form_fun.dynamo_form
+  title: Dynamo!
+  weight: 6
+  parent: form_fun.page

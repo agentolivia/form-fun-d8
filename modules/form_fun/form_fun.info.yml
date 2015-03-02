@@ -1,0 +1,7 @@
+name: 'FormAPI Fun'
+description: 'Crazy, crazy form tricks.'
+core: 8.x
+package: 'Lullabot Examples'
+dependencies:
+  - devel
+type: module
