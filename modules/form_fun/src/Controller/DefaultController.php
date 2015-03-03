@@ -19,8 +19,8 @@ class DefaultController extends ControllerBase {
 
     // Death or Cake? (The basics)
 
-    $links[] = $this->l(
-      $this->t('Death, or cake? (The basics)'), new Url('form_fun.cake_page')
+    $links[] = $this->t('<a href="@url">Death, or cake? (The basics)</a>',
+      array('@url' => $this->url('form_fun.cake_page'))
     );
 
 /*
