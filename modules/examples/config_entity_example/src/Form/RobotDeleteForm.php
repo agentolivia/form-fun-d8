@@ -45,7 +45,7 @@ class RobotDeleteForm extends EntityConfirmFormBase {
   /**
    * Gather the confirmation text.
    *
-   * The confirm text is used as a the text in the button that confirms the
+   * The confirm text is used as the text in the button that confirms the
    * question posed by getQuestion().
    *
    * @return string
@@ -66,7 +66,7 @@ class RobotDeleteForm extends EntityConfirmFormBase {
    *   The URL to go to if the user cancels the deletion.
    */
   public function getCancelUrl() {
-    return new Url('robot.list');
+    return new Url('entity.robot.list');
   }
 
   /**
